@@ -1,1 +1,1 @@
-web gunicorn wsgi:router
+web gunicorn src.wsgi:router
