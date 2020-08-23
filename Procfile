@@ -1,1 +1,1 @@
-web gunicorn src.wsgi:router.app
+web gunicorn src.run:app
