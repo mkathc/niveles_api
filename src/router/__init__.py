@@ -8,4 +8,4 @@ app.config["MONGO_URI"]= "mongodb://niveleskath:kath1234@nivelesaprendizajeclust
 
 mongo = PyMongo(app)
 
-import routes
+from router import routes
