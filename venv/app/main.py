@@ -26,21 +26,24 @@ def create_questions():
     question_list = request.json['question']
     questions_id = list()
     for item in question_list:
-        description = item['description']
-        materialId = item['material_id']
-        alternatives = item['alternatives']
-        correct = item['answerCorrect']
+        try:
+            description = item['description']
+            materialId = item['material_id']
+            alternatives = item['alternatives']
+            correct = item['answerCorrect']
 
-        if description and materialId:
-            id = mongo.db.questions.insert(
-                    {
-                    'description' : description,
-                    'materialId' : materialId,
-                    'alternatives' : alternatives,
-                    'answerCorrect' : correct 
-                    }
-                ) 
-            questions_id.append(str(id))
+            if description and materialId:
+                id = mongo.db.questions.insert(
+                        {
+                        'description' : description,
+                        'materialId' : materialId,
+                        'alternatives' : alternatives,
+                        'answerCorrect' : correct 
+                        }
+                    ) 
+                questions_id.append(str(id))
+        except:
+            Response = not_found()
 
     if (len(questions_id)):
         response = {'questionsId' : questions_id}
@@ -163,3 +166,4 @@ def not_found(error = None):
     })
     response.status_code = 404
     return response
+
